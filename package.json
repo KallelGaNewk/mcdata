@@ -1,0 +1,33 @@
+{
+  "name": "@kallelganewk/mcdata",
+  "version": "1.0.1",
+  "description": "Get minecraft player and server info",
+  "main": "mcdata.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KallelGaNewk/mcdata.git"
+  },
+  "keywords": [
+    "minecraft",
+    "player",
+    "skin",
+    "username",
+    "server",
+    "status",
+    "mojang"
+  ],
+  "author": "kallelganewk",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/KallelGaNewk/mcdata/issues"
+  },
+  "homepage": "https://github.com/KallelGaNewk/mcdata#readme",
+  "dependencies": {
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo Error: no test specified && exit 1"
+  }
+}
