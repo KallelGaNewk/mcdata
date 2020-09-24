@@ -1,8 +1,6 @@
-const { stat } = require('fs');
 const request = require('request-promise');
 
 async function apiRequest(url, focus) {
-    console.log('Request: '+url)
     return new Promise(async (resolve, reject) => {
         await request({
             url: url,
