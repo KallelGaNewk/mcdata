@@ -1,19 +1,16 @@
-const request = require('request-promise');
+const axios = require('axios').default;
 
-async function apiRequest(url, focus) {
+async function newApiRequest(url, focus) {
     return new Promise(async (resolve, reject) => {
-        await request({
-            url: url,
-            json: true,
-        }).then(res => {
+        axios.get(url, { method: 'GET' }).then(async res => {
             if (focus) {
-                if (!res.hasOwnProperty(focus)) {
+                if (!res.data.hasOwnProperty(focus)) {
                     reject(`MCData Error: Response doesn't have the property of ${focus}`);
                 } else {
-                    resolve(res[focus]);
+                    resolve(res.data[focus]);
                 }
             } else {
-                resolve(res);
+                resolve(res.data);
             }
         }).catch(err => {
             reject(`MCData Error: ${err.toString()}`);
@@ -23,9 +20,10 @@ async function apiRequest(url, focus) {
 
 module.exports = {
     playerStatus: async (username) => {
-        var uuid = await apiRequest(`https://api.mojang.com/users/profiles/minecraft/${username}?at=${Math.round((new Date().getTime()) / 1000)}`, 'id')
-        var nameHistory = await apiRequest(`https://api.mojang.com/user/profiles/${uuid.toString()}/names`, null)
-        var nickname = await apiRequest(`https://sessionserver.mojang.com/session/minecraft/profile/${uuid}`, 'name')
+        if (!username) return undefined;
+        var uuid = await newApiRequest(`https://api.mojang.com/users/profiles/minecraft/${username}?at=${Math.round((new Date().getTime()) / 1000)}`, 'id')
+        var nameHistory = await newApiRequest(`https://api.mojang.com/user/profiles/${uuid.toString()}/names`, null)
+        var nickname = await newApiRequest(`https://sessionserver.mojang.com/session/minecraft/profile/${uuid}`, 'name')
 
         return {
             uuid: uuid,
@@ -40,9 +38,9 @@ module.exports = {
         };
     },
     mojangStatus: async () => {
-        var status = await apiRequest('https://status.mojang.com/check', null);
+        var status = await newApiRequest('https://status.mojang.com/check', null);
 
-        var newStatus = {
+        return {
             'minecraft.net': status[0]['minecraft.net'],
             'session.minecraft.net': status[1]['session.minecraft.net'],
             'account.mojang.com': status[2]['account.mojang.com'],
@@ -52,11 +50,23 @@ module.exports = {
             'textures.minecraft.net': status[6]['textures.minecraft.net'],
             'mojang.com': status[7]['mojang.com'],
         };
-
-        return newStatus;
     },
     serverStatus: async (ip) => {
-        var status = await apiRequest(/*`https://eu.mc-api.net/v3/server/ping/${ip}`*/ `https://mcapi.xdefcon.com/server/${ip}/full/json`, null)
-        return status;
+        if (!ip) return undefined;
+        return await newApiRequest(/*`https://eu.mc-api.net/v3/server/ping/${ip}`*/ `https://mcapi.xdefcon.com/server/${ip}/full/json`, null);
+    },
+    player: {
+        getUUID: async (username) => {
+            if (!username) return undefined;
+            return await newApiRequest(`https://api.mojang.com/users/profiles/minecraft/${username}?at=${Math.round((new Date().getTime()) / 1000)}`, 'id');
+        },
+        getUsername: async (uuid) => {
+            if (!uuid) return undefined;
+            return await newApiRequest(`https://sessionserver.mojang.com/session/minecraft/profile/${uuid}`, 'name');
+        },
+        getNameHistory: async (uuid) => {
+            if (!uuid) return undefined;
+            return await newApiRequest(`https://api.mojang.com/user/profiles/${uuid.toString()}/names`, null);
+        }
     }
 };

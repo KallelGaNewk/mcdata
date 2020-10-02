@@ -3,14 +3,18 @@ Get minecraft player and server info
 
 ## Methods
 
-`await .playerStatus([nickname])` - Gets the UUID, Nickname history and skin of the player.</br>
-`await .serverStatus([ip])` - Gets the Status, ping, version, motd and players of the server.</br>
+`await .playerStatus(nickname)` - Gets the UUID, Nickname history and skin of the player.</br>
+`await .serverStatus(ip)` - Gets the Status, ping, version, motd and players of the server.</br>
 `await .mojangStatus()` - Gets the Mojang servers status.</br>
+`await .player.getUUID(nickname)` - Gets only the UUID of user.</br>
+`await .player.getUsername(uuid)` - Gets only the formatted username.</br>
+`await .player.getNameHistory(uuid)` - Gets only the name history of user.</br>
 
 | Parameter | Type | Optional | Default |
 |:-:|-|-|-|
 | nickname | string | ❌ | undefined |
 | ip | string | ❌ | undefined |
+| uuid | string | ❌ | undefined |
 
 ## Outputs
 
