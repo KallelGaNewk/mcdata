@@ -1,14 +1,30 @@
 # MCData
 Get minecraft player and server info
 
+## Installation
+```console
+$ npm i mcdata
+```
+
 ## Methods
 
-`await .playerStatus(nickname)` - Gets the UUID, Nickname history and skin of the player.</br>
-`await .serverStatus(ip)` - Gets the Status, ping, version, motd and players of the server.</br>
-`await .mojangStatus()` - Gets the Mojang servers status.</br>
-`await .player.getUUID(nickname)` - Gets only the UUID of user.</br>
-`await .player.getUsername(uuid)` - Gets only the formatted username.</br>
-`await .player.getNameHistory(uuid)` - Gets only the name history of user.</br>
+`await mcdata.playerStatus(nickname)` | Gets the UUID, Nickname history and skin of the player.
+returns: **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)**
+
+`await mcdata.serverStatus(ip)` | Gets the Status, ping, version, motd and players of the server.
+returns: **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)**
+
+`await mcdata.mojangStatus()` | Gets the Mojang servers status.
+returns: **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)**
+
+`await mcdata.player.getUUID(nickname)` | Gets only the UUID of user.
+returns: **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)**
+
+`await mcdata.player.getUsername(uuid)` | Gets only the formatted username.
+returns: **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)**
+
+`await mcdata.player.getNameHistory(uuid)` | Gets only the name history of user.
+returns: **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)**
 
 | Parameter | Type | Optional | Default |
 |:-:|-|-|-|
@@ -18,42 +34,26 @@ Get minecraft player and server info
 
 ## Outputs
 
-`await .playerStatus('fratta_gamer')`
+`await mcdata.playerStatus('cracklizon')`
 ```js
 {
-  uuid: 'd9a6f51f5706488b97397fb4a5045ae2',
-  username: 'Fratta_Gamer',
+  uuid: 'c86f8692f2124846903bdf1be737bf21',
+  username: 'cracklizon',
   nameHistory: [
-    { name: 'Shawn_REY' },
-    { name: 'Katchan2003', changedToAt: 1515343951000 },    
-    { name: 'NainterGalactik', changedToAt: 1520793463000 },
-    { name: '_Dark_26903', changedToAt: 1523603683000 },    
-    { name: '_Monkey_DLuffy', changedToAt: 1536076288000 }, 
-    { name: 'XQC_Psykoz', changedToAt: 1542822850000 },     
-    { name: 'xQc_Mushi', changedToAt: 1545421128000 },      
-    { name: 'SubAWayS', changedToAt: 1549716527000 },       
-    { name: 'Oksko', changedToAt: 1563284272000 },
-    { name: 'LaBANANASplit', changedToAt: 1566481344000 },
-    { name: 'Warxer', changedToAt: 1569099206000 },
-    { name: 'VAIP3R', changedToAt: 1571692745000 },
-    { name: 'ThrasHersS', changedToAt: 1574347028000 },
-    { name: 'ClaquetteNeige', changedToAt: 1577999654000 },
-    { name: '5_6_K', changedToAt: 1580648443000 },
-    { name: 'Stouplatch', changedToAt: 1583250854000 },
-    { name: 'ClaquetteNeige', changedToAt: 1585923103000 },
-    { name: 'Fratta_Gamer', changedToAt: 1588684270000 }
+    { name: 'Leruan' },
+    { name: 'cracklizon', changedToAt: 1598813222000 }
   ],
   skin: {
-    avatar: 'https://crafatar.com/avatars/d9a6f51f5706488b97397fb4a5045ae2?size=512&default=MHF_Steve&overlay',
-    head: 'https://crafatar.com/renders/head/d9a6f51f5706488b97397fb4a5045ae2?size=512&default=MHF_Steve&overlay',
-    body: 'https://crafatar.com/renders/body/d9a6f51f5706488b97397fb4a5045ae2?size=512&default=MHF_Steve&overlay',
-    texture: 'https://crafatar.com/skins/d9a6f51f5706488b97397fb4a5045ae2'
+    avatar: 'https://crafatar.com/avatars/c86f8692f2124846903bdf1be737bf21?size=512&default=MHF_Steve&overlay',
+    head: 'https://crafatar.com/renders/head/c86f8692f2124846903bdf1be737bf21?size=512&default=MHF_Steve&overlay',
+    body: 'https://crafatar.com/renders/body/c86f8692f2124846903bdf1be737bf21?size=512&default=MHF_Steve&overlay',
+    texture: 'https://crafatar.com/skins/c86f8692f2124846903bdf1be737bf21'
   }
 }
 ```
 
 
-`await .serverStatus('mc.hypixel.net')`
+`await mcdata.serverStatus('mc.hypixel.net')`
 ```js
 {
   serverStatus: 'online',
@@ -72,7 +72,7 @@ Get minecraft player and server info
 }
 ```
 
-`await .mojangStatus()`
+`await mcdata.mojangStatus()`
 ```js
 {
   'minecraft.net': 'red',
@@ -84,4 +84,22 @@ Get minecraft player and server info
   'textures.minecraft.net': 'green',
   'mojang.com': 'red'
 }
-````
+```
+
+`await mcdata.player.getUUID('cracklizon')`
+```js
+'c86f8692f2124846903bdf1be737bf21'
+```
+
+`await mcdata.player.getNameHistory('c86f8692f2124846903bdf1be737bf21')`
+```
+[
+  { name: 'Leruan' },
+  { name: 'cracklizon', changedToAt: 1598813222000 }
+]
+```
+
+`await mcdata.player.getUsername('c86f8692f2124846903bdf1be737bf21')`
+```js
+'cracklizon'
+```
