@@ -8,22 +8,22 @@ $ npm i mcdata
 
 ## Methods
 
-`await mcdata.playerStatus(nickname)` | Gets the UUID, Nickname history and skin of the player.
+`await mcdata.playerStatus(nickname)` | Gets the UUID, Nickname history and skin of the player.<br>
 returns: **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)**
 
-`await mcdata.serverStatus(ip)` | Gets the Status, ping, version, motd and players of the server.
+`await mcdata.serverStatus(ip)` | Gets the Status, ping, version, motd and players of the server.<br>
 returns: **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)**
 
-`await mcdata.mojangStatus()` | Gets the Mojang servers status.
+`await mcdata.mojangStatus()` | Gets the Mojang servers status.<br>
 returns: **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)**
 
-`await mcdata.player.getUUID(nickname)` | Gets only the UUID of user.
+`await mcdata.player.getUUID(nickname)` | Gets only the UUID of user.<br>
 returns: **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)**
 
-`await mcdata.player.getUsername(uuid)` | Gets only the formatted username.
+`await mcdata.player.getUsername(uuid)` | Gets only the formatted username.<br>
 returns: **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)**
 
-`await mcdata.player.getNameHistory(uuid)` | Gets only the name history of user.
+`await mcdata.player.getNameHistory(uuid)` | Gets only the name history of user.<br>
 returns: **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)**
 
 | Parameter | Type | Optional | Default |
