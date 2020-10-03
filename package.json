@@ -1,5 +1,5 @@
 {
-  "name": "@kallelganewk/mcdata",
+  "name": "mcdata",
   "version": "1.0.6",
   "description": "Get minecraft player and server info",
   "main": "mcdata.js",
@@ -22,6 +22,7 @@
     "url": "https://github.com/KallelGaNewk/mcdata/issues"
   },
   "homepage": "https://github.com/KallelGaNewk/mcdata#readme",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "dependencies": {
     "axios": "*"
   },
