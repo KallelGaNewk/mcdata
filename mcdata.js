@@ -1,6 +1,15 @@
+/**
+ * @name MCData
+ * @version 1.0.7
+ * @file Get minecraft player and server info
+ * @author KallelGaNewk
+ * @copyright KallelGaNewk 2020
+ */
+
 const axios = require('axios').default;
 
-async function newApiRequest(url, focus) {
+async function newApiRequest(url, focus, debugging) {
+    if (debugging) console.log(`MCData Debug: New request to ${url} ${focus ? `with focus ${focus}` : ''}`);
     return new Promise(async (resolve, reject) => {
         axios.get(url, { method: 'GET' }).then(async res => {
             if (focus) {
@@ -19,11 +28,17 @@ async function newApiRequest(url, focus) {
 }
 
 module.exports = {
-    playerStatus: async (username) => {
-        if (!username) return undefined;
-        var uuid = await newApiRequest(`https://api.mojang.com/users/profiles/minecraft/${username}?at=${Math.round((new Date().getTime()) / 1000)}`, 'id')
-        var nameHistory = await newApiRequest(`https://api.mojang.com/user/profiles/${uuid.toString()}/names`, null)
-        var nickname = await newApiRequest(`https://sessionserver.mojang.com/session/minecraft/profile/${uuid}`, 'name')
+    /**
+     * Gets the UUID, Nickname history and skin of the player
+     * @param {string} username The username of a Minecraft Player
+     * @param {object} options.debug Log all requests
+     * @returns {object} Player status
+     */
+    playerStatus: async (username, options = {}) => {
+        if (!username) return;
+        var uuid = await newApiRequest(`https://api.mojang.com/users/profiles/minecraft/${username}?at=${Math.round((new Date().getTime()) / 1000)}`, 'id', options.debug)
+        var nameHistory = await newApiRequest(`https://api.mojang.com/user/profiles/${uuid.toString()}/names`, null, options.debug)
+        var nickname = await newApiRequest(`https://sessionserver.mojang.com/session/minecraft/profile/${uuid}`, 'name', options.debug)
 
         return {
             uuid: uuid,
@@ -37,8 +52,13 @@ module.exports = {
             }
         };
     },
-    mojangStatus: async () => {
-        var status = await newApiRequest('https://status.mojang.com/check', null);
+    /**
+     * Gets the Mojang servers status
+     * @param {object} options.debug Log all requests
+     * @returns {object} Mojang status
+     */
+    mojangStatus: async (options = {}) => {
+        var status = await newApiRequest('https://status.mojang.com/check', null, options.debug);
 
         return {
             'minecraft.net': status[0]['minecraft.net'],
@@ -51,22 +71,46 @@ module.exports = {
             'mojang.com': status[7]['mojang.com'],
         };
     },
-    serverStatus: async (ip) => {
-        if (!ip) return undefined;
-        return await newApiRequest(/*`https://eu.mc-api.net/v3/server/ping/${ip}`*/ `https://mcapi.xdefcon.com/server/${ip}/full/json`, null);
+    /**
+     * Gets the Status, ping, version, motd and players of the server
+     * @param {string} ip Minecraft server IP
+     * @param {object} options.debug Log all requests
+     * @returns {object} Server status
+     */
+    serverStatus: async (ip, options = {}) => {
+        if (!ip) return;
+        return await newApiRequest(`https://mcapi.xdefcon.com/server/${ip}/full/json`, null, options.debug);
     },
     player: {
-        getUUID: async (username) => {
-            if (!username) return undefined;
-            return await newApiRequest(`https://api.mojang.com/users/profiles/minecraft/${username}?at=${Math.round((new Date().getTime()) / 1000)}`, 'id');
+        /**
+         * Gets only the UUID of user
+         * @param {string} username The username of a Minecraft Player
+         * @param {object} options.debug Log all requests
+         * @returns {string} User UUID
+         */
+        getUUID: async (username, options = {}) => {
+            if (!username) return;
+            return await newApiRequest(`https://api.mojang.com/users/profiles/minecraft/${username}?at=${Math.round((new Date().getTime()) / 1000)}`, 'id', options.debug);
         },
-        getUsername: async (uuid) => {
-            if (!uuid) return undefined;
-            return await newApiRequest(`https://sessionserver.mojang.com/session/minecraft/profile/${uuid}`, 'name');
+        /**
+         * Gets only the formatted username
+         * @param {string} uuid The UUID of a Minecraft Player
+         * @param {object} options.debug Log all requests
+         * @returns {string} User Username
+         */
+        getUsername: async (uuid, options = {}) => {
+            if (!uuid) return;
+            return await newApiRequest(`https://sessionserver.mojang.com/session/minecraft/profile/${uuid}`, 'name', options.debug);
         },
-        getNameHistory: async (uuid) => {
-            if (!uuid) return undefined;
-            return await newApiRequest(`https://api.mojang.com/user/profiles/${uuid.toString()}/names`, null);
+        /**
+         * Gets only the name history of user
+         * @param {string} uuid The UUID of a Minecraft Player
+         * @param {object} options.debug Log all requests
+         * @returns {Array} User name history
+         */
+        getNameHistory: async (uuid, options = {}) => {
+            if (!uuid) return;
+            return await newApiRequest(`https://api.mojang.com/user/profiles/${uuid.toString()}/names`, null, options.debug);
         }
     }
 };
