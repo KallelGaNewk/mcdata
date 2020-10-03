@@ -24,7 +24,7 @@ returns: **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refe
 returns: **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)**
 
 `await mcdata.player.getNameHistory(uuid)` | Gets only the name history of user.<br>
-returns: **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)**
+returns: **[array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)**
 
 | Parameter | Type | Optional | Default |
 |:-:|-|-|-|
