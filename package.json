@@ -22,7 +22,9 @@
     "url": "https://github.com/KallelGaNewk/mcdata/issues"
   },
   "homepage": "https://github.com/KallelGaNewk/mcdata#readme",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "dependencies": {
     "axios": "*"
   },
