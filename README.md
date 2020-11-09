@@ -34,7 +34,7 @@ returns: **[array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 
 ## Outputs
 
-`await mcdata.playerStatus('cracklizon')`
+`await mcdata.playerStatus('cracklizon', { skinOverlay: true })`
 ```js
 {
   uuid: 'c86f8692f2124846903bdf1be737bf21',
