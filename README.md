@@ -1,5 +1,6 @@
 # MCData
-Get minecraft player and server info
+Get minecraft player and server info<br>
+Thanks to [MCHeads](https://mc-heads.net) for providing Minecraft avatars.
 
 ## Installation
 ```console
@@ -8,46 +9,32 @@ $ npm i mcdata
 
 ## Methods
 
-`await mcdata.playerStatus(nickname)` | Gets the UUID, Nickname history and skin of the player.<br>
-returns: **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)**
-
-`await mcdata.serverStatus(ip)` | Gets the Status, ping, version, motd and players of the server.<br>
-returns: **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)**
-
-`await mcdata.mojangStatus()` | Gets the Mojang servers status.<br>
-returns: **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)**
-
-`await mcdata.player.getUUID(nickname)` | Gets only the UUID of user.<br>
-returns: **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)**
-
-`await mcdata.player.getUsername(uuid)` | Gets only the formatted username.<br>
-returns: **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)**
-
-`await mcdata.player.getNameHistory(uuid)` | Gets only the name history of user.<br>
-returns: **[array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)**
-
-| Parameter | Type | Optional | Default |
-|:-:|-|-|-|
-| nickname | string | ❌ | undefined |
-| ip | string | ❌ | undefined |
-| uuid | string | ❌ | undefined |
-
-## Outputs
-
-`await mcdata.playerStatus('cracklizon', { skinOverlay: true })`
+`await mcdata.playerStatus('KallelGaNewk', { renderSize: 512 })`
 ```js
 {
-  uuid: 'c86f8692f2124846903bdf1be737bf21',
-  username: 'cracklizon',
-  nameHistory: [
-    { name: 'Leruan' },
-    { name: 'cracklizon', changedToAt: 1598813222000 }
-  ],
+  uuid: '4a096cb37bb841cb8a6bdb3dfa15b4ef',
+  username: 'KallelGaNewk',
+  nameHistory: [ { name: 'KallelGaNewk' } ],
   skin: {
-    avatar: 'https://crafatar.com/avatars/c86f8692f2124846903bdf1be737bf21?size=512&default=MHF_Steve&overlay',
-    head: 'https://crafatar.com/renders/head/c86f8692f2124846903bdf1be737bf21?size=512&default=MHF_Steve&overlay',
-    body: 'https://crafatar.com/renders/body/c86f8692f2124846903bdf1be737bf21?size=512&default=MHF_Steve&overlay',
-    texture: 'https://crafatar.com/skins/c86f8692f2124846903bdf1be737bf21'
+    avatar: 'https://mc-heads.net/avatar/4a096cb37bb841cb8a6bdb3dfa15b4ef/512',
+    renders: {
+      head: {
+        left: 'https://mc-heads.net/head/4a096cb37bb841cb8a6bdb3dfa15b4ef/left/512',
+        right: 'https://mc-heads.net/head/4a096cb37bb841cb8a6bdb3dfa15b4ef/right/512'
+      },
+      body: {
+        left: 'https://mc-heads.net/body/4a096cb37bb841cb8a6bdb3dfa15b4ef/left/512',
+        right: 'https://mc-heads.net/body/4a096cb37bb841cb8a6bdb3dfa15b4ef/right/512'
+      }
+    },
+    fullBody: 'https://mc-heads.net/player/4a096cb37bb841cb8a6bdb3dfa15b4ef/512',
+    combo: 'https://mc-heads.net/combo/4a096cb37bb841cb8a6bdb3dfa15b4ef/512',
+    cape: 'https://mc-heads.net/cape/4a096cb37bb841cb8a6bdb3dfa15b4ef/512',
+    texture: {
+      get: 'https://mc-heads.net/skin/4a096cb37bb841cb8a6bdb3dfa15b4ef/512',
+      download: 'https://mc-heads.net/download/4a096cb37bb841cb8a6bdb3dfa15b4ef/512',
+      apply: 'https://mc-heads.net/change/4a096cb37bb841cb8a6bdb3dfa15b4ef/512'
+    }
   }
 }
 ```
@@ -75,14 +62,16 @@ returns: **[array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 `await mcdata.mojangStatus()`
 ```js
 {
-  'minecraft.net': 'red',
-  'session.minecraft.net': 'green', 
-  'account.mojang.com': 'green',    
-  'authserver.mojang.com': 'green', 
-  'sessionserver.mojang.com': 'red',
-  'api.mojang.com': 'green',        
-  'textures.minecraft.net': 'green',
-  'mojang.com': 'red'
+  v: 11,
+  last_updated: '07:20:02 IST',
+  report: {
+    skins: { status: 'up', title: 'Online', uptime: '100.00' },
+    session: { status: 'up', title: 'Online', uptime: '99.83' },
+    api: { status: 'up', title: 'Online', uptime: '99.79' },
+    login: { status: 'up', title: 'Online', uptime: '99.51' },
+    realms: { status: 'up', title: 'Online', uptime: '99.25' },
+    website: { status: 'up', title: 'Online', uptime: '99.85' }
+  }
 }
 ```
 

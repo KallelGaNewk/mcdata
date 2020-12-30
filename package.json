@@ -1,6 +1,6 @@
 {
   "name": "mcdata",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Get minecraft player and server info",
   "main": "mcdata.js",
   "repository": {
