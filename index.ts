@@ -13,7 +13,7 @@ export class MCData {
    * const status = await mcdata.apiStatus();
    * ```
    */
-  apiStatus() {
+  public apiStatus() {
     return new Promise(async (resolve, reject) => {
       const response: any = await get(
         "https://status.mojang.com/check"
@@ -33,7 +33,7 @@ export class MCData {
    * const player = await mcdata.getUUID('KallelGaNewk');
    * ```
    */
-  getUUID(username: string) {
+  public getUUID(username: string) {
     return new Promise(async (resolve, reject) => {
       if (username.length < 3 || username.length > 16) {
         return reject(new Error("Invalid username"));
@@ -61,7 +61,7 @@ export class MCData {
    * const nameHistory = await mcdata.getNameHistory('4a096cb37bb841cb8a6bdb3dfa15b4ef');
    * ```
    */
-  getNameHistory(uuid: string) {
+  public getNameHistory(uuid: string) {
     return new Promise(async (resolve, reject) => {
       if (typeof uuid !== "string") {
         return reject(new Error("Invalid UUID"));
@@ -91,7 +91,7 @@ export class MCData {
    * ```
    *
    */
-  getUUIDs(usernames: []) {
+  public getUUIDs(usernames: []) {
     return new Promise(async (resolve, reject) => {
       if (
         !Array.isArray(usernames) ||
@@ -134,7 +134,7 @@ export class MCData {
    * const playerProfile = await mcdata.getPlayerProfile('4a096cb37bb841cb8a6bdb3dfa15b4ef');
    * ```
    */
-  getPlayerProfile(uuid: string) {
+  public getPlayerProfile(uuid: string) {
     return new Promise(async (resolve, reject) => {
       if (typeof uuid !== "string") {
         return reject(new Error("Invalid UUID"));
