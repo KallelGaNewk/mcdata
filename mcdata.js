@@ -1,9 +1,7 @@
 /**
- * @name MCData
- * @version 1.0.9
- * @file Get minecraft player and server info
- * @author kallelganewk
- * @copyright KallelGaNewk 2021
+ * A Node.js module that allows you to interact with the Mojang API.
+ * @module mcdata
+ * @license Apache-2.0
  */
 
 const { get } = require('axios').default;
