@@ -1,11 +1,14 @@
 import * as axios from "axios";
+import {ChangeSkinPayload, MojangNameHistory, MojangPlayerProfile, MojangStatusCheck, MojangUUID} from "./types";
 
 const { get, post } = axios.default;
+
+
 
 export class MCData {
   /**
    * Returns status of various Mojang services. Possible values are `green` (no issues), `yellow` (some issues), `red` (service unavailable).
-   * @returns {Promise<array>}
+   * @returns {Promise<MojangStatusCheck[]>}
    * @example
    * ```
    * const { MCData } = require('mcdata');
@@ -14,18 +17,19 @@ export class MCData {
    * ```
    */
   public apiStatus() {
-    return new Promise(async (resolve, reject) => {
-      const response: any = await get(
+    return new Promise(async (resolve) => {
+      const { data } = await get(
         "https://status.mojang.com/check"
       ).catch(() => {});
 
-      resolve(response.data);
+      resolve(data as MojangStatusCheck[]);
     });
   }
+
   /**
    * Returns a object with UUID of the player
    * @param {string} username
-   * @returns {Promise<object>}
+   * @returns {Promise<MojangUUID>}
    * @example
    * ```
    * const { MCData } = require('mcdata');
@@ -47,13 +51,14 @@ export class MCData {
         return reject(new Error("This username does not exist"));
       }
 
-      resolve(response.data);
+      resolve(response.data as MojangUUID);
     });
   }
+
   /**
    * Returns a array of objects containing nicknames and UUIDs
    * @param {string} uuid
-   * @returns {Promise<array>}
+   * @returns {Promise<MojangNameHistory[]>}
    * @example
    * ```
    * const { MCData } = require('mcdata');
@@ -75,13 +80,14 @@ export class MCData {
         return reject(new Error("This UUID does not exist"));
       }
 
-      resolve(response.data);
+      resolve(response.data as MojangNameHistory[]);
     });
   }
+
   /**
    * This will return player UUIDs and some extras.
    * @param {array} usernames
-   * @returns {Promise<array>}
+   * @returns {Promise<MojangUUID[]>}
    * @example
    * ```
    * const { MCData } = require('mcdata');
@@ -120,13 +126,14 @@ export class MCData {
         usernames
       );
 
-      resolve(response.data);
+      resolve(response.data as MojangUUID[]);
     });
   }
+
   /**
    * Returns the player's username plus any additional information about them (e.g. skins)
    * @param {string} uuid
-   * @returns {Promise<object>}
+   * @returns {Promise<MojangPlayerProfile>}
    * @example
    * ```
    * const { MCData } = require('mcdata');
@@ -140,7 +147,7 @@ export class MCData {
         return reject(new Error("Invalid UUID"));
       }
 
-      const response:any = await get(
+      const response = await get(
         `https://sessionserver.mojang.com/session/minecraft/profile/${uuid.trim()}`
       ).catch(() => {});
 
@@ -148,7 +155,20 @@ export class MCData {
         return reject(new Error("This UUID does not exist"));
       }
 
-      resolve(response.data);
+      resolve(response.data as MojangPlayerProfile);
     });
+  }
+
+  //TODO: Make a review
+  public changeSkin({token, variant, skinUrl}: ChangeSkinPayload) {
+    return new Promise(async (resolve, reject) => {
+      const response = await post('https://api.minecraftservices.com/minecraft/profile/skins').catch(() => {});
+
+      if (!response) {
+        return reject(new Error('something goes wrong'))
+      }
+
+      resolve(true)
+    })
   }
 }
