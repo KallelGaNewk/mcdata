@@ -2,13 +2,10 @@
   "name": "mcdata",
   "version": "1.0.9",
   "description": "Get minecraft player and server info",
-  "main": "",
+  "main": "mcdata.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KallelGaNewk/mcdata.git"
-  },
-  "scripts": {
-    "build": "tsc ./index.ts --outDir ./build --lib es2015"
   },
   "keywords": [
     "minecraft",
@@ -26,9 +23,7 @@
   },
   "homepage": "https://github.com/KallelGaNewk/mcdata#readme",
   "dependencies": {
-    "axios": "^0.21.1"
+    "axios": "*"
   },
-  "devDependencies": {
-    "prettier": "^2.2.1"
-  }
+  "devDependencies": {}
 }
