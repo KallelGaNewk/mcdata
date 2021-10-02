@@ -91,6 +91,46 @@ export class MCData {
     });
   }
 
+    /**
+   * Returns a array of the names from oldest to newest in a single line
+   * @param {string} uuid
+   * @returns {Promise<MojangNameHistory[]>}
+   * @example
+   * ```
+   * const { MCData } = require('mcdata');
+   * const mcdata = new MCData();
+   * const nameHistory = await mcdata.quickNameHistory('4a096cb37bb841cb8a6bdb3dfa15b4ef');
+   * ```
+   */
+  public quickNameHistory(uuid: string) {
+    return new Promise(async (resolve, reject) => {
+      if (typeof uuid !== 'string') {
+        return reject(new Error('Invalid UUID'));
+      }
+
+      const response = await get(
+        `https://api.mojang.com/user/profiles/${uuid.trim()}/names`,
+      ).catch(() => {});
+
+      if (!response || response.status === 204) {
+        return reject(new Error('This UUID does not exist'));
+      }
+
+
+      let toString:any = JSON.stringify(response.data)
+      let parsed = JSON.parse(toString)
+      var names:any = []
+      for(const key of parsed) {
+     
+        names.push(key.name)
+
+      }
+
+     resolve(names.join(', ') as MojangNameHistory[])
+     
+    });
+  }
+
   /**
    * This will return player UUIDs and some extras.
    * @param {array} usernames
