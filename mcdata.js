@@ -50,17 +50,6 @@ module.exports = {
       };
   },
   /**
-   * Gets the Mojang servers status
-   * @returns {Promise<object>} Mojang status
-   */
-  mojangStatus: async () => {
-    const status = (await get('https://mc-heads.net/json/mc_status')).data;
-
-    if (!status) return;
-
-    return status;
-  },
-  /**
    * Gets the Status, ping, version, motd and players of the server
    * @param {string} ip Minecraft server IP
    * @returns {Promise<Object>} Server status
