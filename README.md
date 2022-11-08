@@ -2,6 +2,9 @@
 Get minecraft player and server info<br>
 Thanks to [MCHeads](https://mc-heads.net) for providing Minecraft avatars.
 
+## Where is player name history?
+Read more: https://help.minecraft.net/hc/en-us/articles/8969841895693-Username-History-API-Removal-FAQ
+
 ## Installation
 ```console
 $ npm i mcdata

@@ -77,14 +77,5 @@ module.exports = {
       if (!uuid) return;
       return (await get(`https://sessionserver.mojang.com/session/minecraft/profile/${uuid}`)).data.name;
     },
-    /**
-     * Gets only the name history of user
-     * @param {string} uuid The UUID of a Minecraft Player
-     * @returns {Promise<Object>} User name history
-     */
-    getNameHistory: async (uuid) => {
-      if (!uuid) return;
-      return (await get(`https://api.mojang.com/user/profiles/${uuid.toString()}/names`)).data;
-    }
   }
 };
