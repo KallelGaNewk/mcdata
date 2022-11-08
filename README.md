@@ -22,21 +22,20 @@ $ npm i mcdata
     avatar: 'https://mc-heads.net/avatar/4a096cb37bb841cb8a6bdb3dfa15b4ef/512',
     renders: {
       head: {
-        left: 'https://mc-heads.net/head/4a096cb37bb841cb8a6bdb3dfa15b4ef/left/512',
-        right: 'https://mc-heads.net/head/4a096cb37bb841cb8a6bdb3dfa15b4ef/right/512'
+        left: 'https://mc-heads.net/head/4a096cb37bb841cb8a6bdb3dfa15b4ef/left',
+        right: 'https://mc-heads.net/head/4a096cb37bb841cb8a6bdb3dfa15b4ef/right'
       },
       body: {
-        left: 'https://mc-heads.net/body/4a096cb37bb841cb8a6bdb3dfa15b4ef/left/512',
-        right: 'https://mc-heads.net/body/4a096cb37bb841cb8a6bdb3dfa15b4ef/right/512'
+        left: 'https://mc-heads.net/body/4a096cb37bb841cb8a6bdb3dfa15b4ef/left',
+        right: 'https://mc-heads.net/body/4a096cb37bb841cb8a6bdb3dfa15b4ef/right'
       }
     },
     fullBody: 'https://mc-heads.net/player/4a096cb37bb841cb8a6bdb3dfa15b4ef/512',
     combo: 'https://mc-heads.net/combo/4a096cb37bb841cb8a6bdb3dfa15b4ef/512',
-    cape: 'https://mc-heads.net/cape/4a096cb37bb841cb8a6bdb3dfa15b4ef/512',
     texture: {
-      get: 'https://mc-heads.net/skin/4a096cb37bb841cb8a6bdb3dfa15b4ef/512',
-      download: 'https://mc-heads.net/download/4a096cb37bb841cb8a6bdb3dfa15b4ef/512',
-      apply: 'https://mc-heads.net/change/4a096cb37bb841cb8a6bdb3dfa15b4ef/512'
+      get: 'https://mc-heads.net/skin/4a096cb37bb841cb8a6bdb3dfa15b4ef',
+      download: 'https://mc-heads.net/download/4a096cb37bb841cb8a6bdb3dfa15b4ef',
+      apply: 'https://mc-heads.net/change/4a096cb37bb841cb8a6bdb3dfa15b4ef'
     }
   }
 }
@@ -62,33 +61,9 @@ $ npm i mcdata
 }
 ```
 
-`await mcdata.mojangStatus()`
-```js
-{
-  v: 11,
-  last_updated: '07:20:02 IST',
-  report: {
-    skins: { status: 'up', title: 'Online', uptime: '100.00' },
-    session: { status: 'up', title: 'Online', uptime: '99.83' },
-    api: { status: 'up', title: 'Online', uptime: '99.79' },
-    login: { status: 'up', title: 'Online', uptime: '99.51' },
-    realms: { status: 'up', title: 'Online', uptime: '99.25' },
-    website: { status: 'up', title: 'Online', uptime: '99.85' }
-  }
-}
-```
-
 `await mcdata.player.getUUID('cracklizon')`
 ```js
 'c86f8692f2124846903bdf1be737bf21'
-```
-
-`await mcdata.player.getNameHistory('c86f8692f2124846903bdf1be737bf21')`
-```js
-[
-  { name: 'Leruan' },
-  { name: 'cracklizon', changedToAt: 1598813222000 }
-]
 ```
 
 `await mcdata.player.getUsername('c86f8692f2124846903bdf1be737bf21')`
