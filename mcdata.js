@@ -31,21 +31,20 @@ module.exports = {
           avatar: `https://mc-heads.net/avatar/${res.data.id}/${options.skinSize ? options.skinSize : '512'}`,
           renders: {
             head: {
-              left: `https://mc-heads.net/head/${res.data.id}/left/${options.skinSize ? options.skinSize : '512'}`,
-              right: `https://mc-heads.net/head/${res.data.id}/right/${options.skinSize ? options.skinSize : '512'}`
+              left: `https://mc-heads.net/head/${res.data.id}/left`,
+              right: `https://mc-heads.net/head/${res.data.id}/right`
             },
             body: {
-              left: `https://mc-heads.net/body/${res.data.id}/left/${options.skinSize ? options.skinSize : '512'}`,
-              right: `https://mc-heads.net/body/${res.data.id}/right/${options.skinSize ? options.skinSize : '512'}`
+              left: `https://mc-heads.net/body/${res.data.id}/left`,
+              right: `https://mc-heads.net/body/${res.data.id}/right`
             }
           },
           fullBody: `https://mc-heads.net/player/${res.data.id}/${options.skinSize ? options.skinSize : '512'}`,
           combo: `https://mc-heads.net/combo/${res.data.id}/${options.skinSize ? options.skinSize : '512'}`,
-          cape: `https://mc-heads.net/cape/${res.data.id}/${options.skinSize ? options.skinSize : '512'}`,
           texture: {
-            get: `https://mc-heads.net/skin/${res.data.id}/${options.skinSize ? options.skinSize : '512'}`,
-            download: `https://mc-heads.net/download/${res.data.id}/${options.skinSize ? options.skinSize : '512'}`,
-            apply: `https://mc-heads.net/change/${res.data.id}/${options.skinSize ? options.skinSize : '512'}`
+            get: `https://mc-heads.net/skin/${res.data.id}`,
+            download: `https://mc-heads.net/download/${res.data.id}`,
+            apply: `https://mc-heads.net/change/${res.data.id}`
           }
         }
       };
