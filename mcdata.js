@@ -6,7 +6,7 @@
  * @copyright KallelGaNewk 2021
  */
 
-const { get } = require('axios').default;
+const { get } = require('axios');
 
 module.exports = {
   /**

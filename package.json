@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/KallelGaNewk/mcdata#readme",
   "dependencies": {
-    "axios": "*"
+    "axios": "^1.1.3"
   },
   "devDependencies": {}
 }
